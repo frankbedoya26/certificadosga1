@@ -60,11 +60,5 @@ class NuevaSolicitudController extends Controller{
         $msj='si';
         return response()->json(['msj'=>$msj]);
     }
-    public function getsemestre($cod,$tipo){
-        $cant="";
-        if ($tipo=="Pregrado" || $tipo=="pregrado") {
-            $cant=DB::table('Rendimiento')->where('Alumno',$cod)->where('Promedio','>=',11)->distinct('Semestre')->count('Semestre');
-        }
-        return response()->json(["cant"=>$cant,"tipo"=>$tipo]);
-    }
+    
 }
