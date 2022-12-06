@@ -170,54 +170,6 @@
             toastr.warning("Ingrese un código o nombre del alumno");
           }
    			},
-
-      getalumnogaaaa: function () {
-        this.txtalumen="";
-          if (this.txtbuscar.trim()!="" && this.cbotipo!=0) {
-            var bus=this.txtbuscar;
-            var url = 'nuevasol?bus='+bus+'&tipo='+this.cbotipo;
-            axios.get(url).then(response=>{
-              this.alumno= response.data.alumno;
-              if(this.alumno.length==0){
-                this.tabalumnos=false;
-                this.txtalumen='El alumno no se encuentra registrado';
-                $("#btnemp").attr('disabled', true);
-                this.verdivdatos="no";
-              }else if(this.alumno.length==1){
-                this.tabalumnos=false;
-                this.txtalumen=this.alumno[0]['Alumno']+" - "+this.alumno[0]['NombreCompleto'];
-                this.nomcompleto=this.alumno[0]['NombreCompleto'];
-                this.dni=this.alumno[0]['Dni'];
-                this.programaes=this.alumno[0]['Descripcion'];
-                this.codigo=this.alumno[0]['Alumno'];
-                this.txtemail=this.alumno[0]['Email'];
-                this.txttel=this.alumno[0]['Telefono'];
-                this.txtdir=this.alumno[0]['Direccion'];
-                this.tipo=this.cbotipo;
-                this.idalumn=this.alumno[0]['id'];
-
-                if (this.tipo=="Pregrado") {
-                  this.txtmonto=this.mpregrado*this.txtcant;
-                  this.monto=this.mpregrado;
-                }else if (this.tipo=="Posgrado") {
-                  this.txtmonto=this.mpostgrado*this.txtcant;
-                  this.monto=this.mpostgrado;
-                }else if (this.tipo=="Cacip") {
-                  this.txtmonto=this.mcacip*this.txtcant;
-                  this.monto=this.mcacip;
-                }
-
-                $("#btnemp").removeAttr("disabled");
-                this.verdivdatos="si";
-              }else{
-                this.tabalumnos=true;
-              }
-              
-            });
-          }else{
-            toastr.warning("Ingrese un código o nombre del alumno");
-          }
-        },
         enviar:function(){
         if (this.idalumn!= "" && this.txtnumreb.trim() != "" && this.txtfecpag.trim() != "" && this.txtcant>0 && this.esta!= "") {
           var data = new FormData();
